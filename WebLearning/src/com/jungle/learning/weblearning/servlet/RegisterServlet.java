@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jungle.learning.weblearning.helper.RequestParams;
+
 /**
  * Servlet implementation class RegisterServlet
  */
@@ -28,7 +30,10 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		RequestParams rp = new RequestParams(request);
+		String name = rp.getString("name");
+		String pass = rp.getString("password");
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
