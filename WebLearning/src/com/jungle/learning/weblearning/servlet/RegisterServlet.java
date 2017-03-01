@@ -32,6 +32,7 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		// TODO Auto-generated method stub
 		RequestParams rp = new RequestParams(request);
 		String name = rp.getString("username");
