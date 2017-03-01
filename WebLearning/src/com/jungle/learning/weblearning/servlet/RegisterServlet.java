@@ -31,6 +31,7 @@ public class RegisterServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestParams rp = new RequestParams(request);
+
 		String name = rp.getString("name");
 		String pass = rp.getString("password");
 
