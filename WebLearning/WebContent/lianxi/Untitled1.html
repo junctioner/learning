@@ -1,0 +1,49 @@
+<html>
+<head>
+<script type="text/javascript">
+
+function validate_required(field,alerttxt)
+{
+
+  
+  if (field.value==null||field.value=="")
+    {
+		alert(alerttxt);return false
+	}
+  else {
+	  return true
+}
+  
+}
+
+function validate_form(thisform)
+{
+
+ 
+  if (validate_required(thisform.email,"Email must be filled out!")==false)
+    {
+		thisform.email.focus();
+		return false		
+	}
+ 
+}
+function validate_form2(){
+	var em = document.getElementById("aa");
+	if(em.value == ""){
+		alert("邮箱是必填项，不能为空！");
+		return false;
+	}else {
+		return true;
+	}
+}
+</script>
+</head>
+
+<body>
+<form action="Untitled1.html" onsubmit="return validate_form2()" method="post">
+Email: <input type="text" name="email" id="aa" size="30">
+<input type="submit" value="Submit"> 
+</form>
+</body>
+
+</html>
