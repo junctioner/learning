@@ -25,7 +25,12 @@
 				}else{
 					r="其他三角形";
 				}
-				document.getElementById("demo").innerHTML=r;
+				var p = document.getElementById("demo");
+				var p2 = document.getElementById("d2");
+				var result ='结果:<font color="red">'+r+"</font>";
+				p.innerHTML=result;
+				p2.innerText=result;
+				
 			}
 		</script>
 	</head>
@@ -33,7 +38,9 @@
 		边1：<input type="text" id="c" /><br />
 		边2：<input type="text" id="z" /><br />
 		边3：<input type="text" id="k" /><br />
+		
 		<button onclick="czk('c','z','k')">点击这里</button>
 		<p id="demo"></p>
+		<p id="d2"></p>
 	</body>
 </html>
