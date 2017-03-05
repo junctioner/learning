@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>练习</title>
+		<meta charset="utf-8" />
+		<script>
+			function czk(z){
+				var r="";
+				var t=z/10;
+				var y=Math.floor(t);
+				if(z%7==0){
+					r="过";
+				}else if(z%10==7){
+					r="过";
+				}else if(y==7){
+					r="过";
+				}else{
+					r=z;
+				}
+				document.getElementById("demo").innerHTML=r;
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="c"/>
+		<button onclick="czk(document.getElementById('c').value)">点击这里</button>
+		<p id="demo"></p>
+	</body>
+</html>
