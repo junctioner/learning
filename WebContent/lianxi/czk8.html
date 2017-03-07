@@ -12,6 +12,7 @@
 				var val2 = input2.value;
 				var val3 = input3.value;
 				debugger;
+				var r = "";
 				if(val1 > 1.5) {
 					r = "请补票";
 				} else if(val2 > 0.5) {
@@ -22,6 +23,43 @@
 					r = "谢谢光临";
 				}
 				document.getElementById("demo").innerHTML = r;
+			}
+			/**
+			 * 获取传入两个参数中较大的一个
+			 * @param {Object} a 数值
+			 * @param {Object} b 数值
+			 */
+			function max(a, b) {	
+				/**
+				 * 如果a比较b,a大于b反之b大于a;
+				 */
+				if(a > b) {
+					return a;
+				} else {
+					return b;
+				}
+			}
+			/**
+			 */
+			function max(a,b,c){
+				/**
+				 * 如果 A 大于 B，则比较A和C;
+				 *       如果A 大于C;则A是最大值 ，否则 C是最大值；
+				 * 否则  ，比较B和C;
+				 * 		如果B 大于C;则B是最大值 ，否则 C是最大值；
+				 */
+				var o=
+				if(a>b){
+				
+				}else if(a>c){
+					return c;
+				}
+				
+			}
+			
+			function max2(a,b,c){
+				var d = max(a,b);
+				return max(d,c);
 			}
 		</script>
 	</head>
