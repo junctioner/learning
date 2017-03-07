@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>练习</title>
+		<meta charset="utf-8" />
+		<style>
+			table{width:90px;
+			      height:45px;}
+			a{color: yellow;}
+		</style>
+		<script>
+		function disp_alert(){			
+			var name = prompt("请输入您的名称：","kkkk");
+			document.getElementById("demo").innerHTML= name ;
+			}
+		</script>
+	</head>
+	<body>
+		<table border="1">
+			<tr>
+				<td>
+					<a href="http://www.baidu.com">百度</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="www.baidu.com">百度</a>
+				</td>
+			</tr>
+		</table>
+		<div id="demo">yyyyyy<span id="sdsdf">sfsf</span></div>
+		<input type="button" value="显示警告框" onclick="disp_alert()" />
+	</body>
+</html>
