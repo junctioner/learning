@@ -1,0 +1,37 @@
+<html>
+
+	<head>
+		<title>练习</title>
+		<meta charset="utf-8" />
+		<script>
+			function czk(q, w, e) {
+				var input1 = document.getElementById(q);
+				var input2 = document.getElementById(w);
+				var input3 = document.getElementById(e);
+				var val1 = input1.value;
+				var val2 = input2.value;
+				var val3 = input3.value;
+				debugger;
+				if(val1 > 1.5) {
+					r = "请补票";
+				} else if(val2 > 0.5) {
+					r = "请补票";
+				} else if(val3 > 1.5) {
+					r = "请补票";
+				} else {
+					r = "谢谢光临";
+				}
+				document.getElementById("demo").innerHTML = r;
+			}
+		</script>
+	</head>
+
+	<body>
+		长：<input type="text" id="c" /><br/> 宽：
+		<input type="text" id="z" /><br /> 高：
+		<input type="text" id="k" /><br/>
+		<button onclick="czk('c','z','k')">点击这里</button>
+		<p id="demo"></p>
+	</body>
+
+</html>
