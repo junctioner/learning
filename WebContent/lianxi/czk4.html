@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			function czk(x, s, t) {
+				var input1 = document.getElementById(x);
+				var input2 = document.getElementById(s);
+				var input3 = document.getElementById(t);
+				var val1 = input1.value;
+				var val2 = input2.value;
+				var val3 = input3.value;
+				debugger;
+				var b = "";
+				var g = "未知体重";
+				if(val1 == "男") {
+					b = "男";					
+					var bztz = val2 - 100;
+					var zx = bztz - 3;
+					var zd = bztz + 3;
+					
+					if(val3 < zx) {
+						g = "偏瘦";
+					} else if(val3 > zd) {
+						g = "偏胖";
+					} else {
+						g = "标准";
+					}
+				} else if(val1 == "女") {
+					b = "女";
+
+					var bztz = val2 - 110;
+					var zx = bztz - 3;
+					var zd = bztz + 3;
+					if(val3 > zd) {
+						g = "偏胖";
+					} else if(val3 < zx) {
+						g = "偏瘦";
+					} else {
+						g = "标准";
+					}
+				} else {
+					b = "火星人";
+				};
+
+				document.getElementById("demo").innerHTML = b + g;
+			}
+		</script>
+	</head>
+
+	<body>
+		性别：<input type="text" id="c" /><br> 身高：
+		<input type="text" id="z" /><br> 体重：
+		<input type="text" id="k" /><br>
+		<button onclick="czk('c','z','k')">点击这里</button>
+
+		<p id="demo"></p>
+	</body>
+
+</html>

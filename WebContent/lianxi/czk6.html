@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>练习</title>
+		<meta charset="utf-8" />
+		<script>
+			function czk(z){
+				var k="";
+				var p=z>=90;
+				var q=z<=100;
+				var o=p&&q;
+				debugger;
+				if(o){
+					k="A";
+				}else if(z>74.5&&z<=89){
+					k="B";
+				}else if(z>=60&&z<=74){
+					k="C";
+				}else if(z>=0&&z<=59){
+					k="D";
+				}else{
+					k="请输入0~100之内的分数";
+				}
+				document.getElementById("demo").innerHTML=k;
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="c" />
+		<button onclick="czk(document.getElementById('c').value)">点击这里</button>
+		<p id="demo"></p>
+	</body>
+</html>
