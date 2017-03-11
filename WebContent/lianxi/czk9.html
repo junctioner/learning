@@ -1,0 +1,52 @@
+<html>
+	<head>
+		<title>练习</title>
+		<meta charset="utf-8" />
+		<script>
+			function czk(q){
+				var input1=document.getElementById(q);
+				var val1=input1.value;
+				debugger;
+				var r="";
+				
+				
+				if(val1<=10){
+					var t=val1*0.1;
+					r=t;
+				}else if(val1>=10||val1<=20){
+					var y=val1-10;
+					var o=10*0.1;
+					var u=y*0.075;
+					var i=u+o;
+					r=i;
+				}else if(val1>=20||val1<=40){
+					var p=val1-20;
+					var a=p*0.05;
+					var s=a+1.75;
+					r=s;
+				}else if(val1>=40||val1<=60){
+					var d=val1-40;
+					var f=d*0.03;
+					var g=f+3.25;
+					r=g;
+				}else if(val1>=60||val1<=100){
+					var h=val1-60;
+					var j=h*0.013;
+					var k=j+4.75;
+					r=k;
+				}else if(val1>=100){
+					var l=val1-100;
+					var z=l*0.01;
+					var x=z+7.75;
+					r=x;
+				}
+				document.getElementById("demo").innerHTML=r;
+			}
+		</script>
+	</head>
+	<body>
+		请输入利润额：<input type="text" id="c" />万元
+		<button onclick="czk('c')">点击这里</button>
+		<p id="demo"></p>
+	</body>
+</html>
