@@ -1,52 +1,168 @@
 <html>
+
 	<head>
 		<title>练习</title>
 		<meta charset="utf-8" />
 		<script>
-			function czk(q){
-				var input1=document.getElementById(q);
-				var val1=input1.value;
+			function kzc(m) {
+				var input1 = document.getElementById(m);
+				var val1 = input1.value;
 				debugger;
-				var r="";
-				
-				
-				if(val1<=10){
-					var t=val1*0.1;
-					r=t;
-				}else if(val1>=10||val1<=20){
-					var y=val1-10;
-					var o=10*0.1;
-					var u=y*0.075;
-					var i=u+o;
-					r=i;
-				}else if(val1>=20||val1<=40){
-					var p=val1-20;
-					var a=p*0.05;
-					var s=a+1.75;
-					r=s;
-				}else if(val1>=40||val1<=60){
-					var d=val1-40;
-					var f=d*0.03;
-					var g=f+3.25;
-					r=g;
-				}else if(val1>=60||val1<=100){
-					var h=val1-60;
-					var j=h*0.013;
-					var k=j+4.75;
-					r=k;
-				}else if(val1>=100){
-					var l=val1-100;
-					var z=l*0.01;
-					var x=z+7.75;
-					r=x;
+				var r = window.evalProfit(val1);
+
+				document.getElementById("demo").innerHTML = r;
+			}
+			function kzc2(m) {
+				var input1 = document.getElementById(m);
+				var val1 = input1.value;
+				debugger;
+				var r = evalProfit2(val1);
+
+				document.getElementById("demo").innerHTML = r;
+			}
+			
+			function czk(q) {
+				var input1 = document.getElementById(q);
+				var val1 = input1.value;
+				debugger;
+				var r = "";
+
+				if(val1 <= 10) {
+					var t = val1 * 0.1;
+					r = t;
+				} else if(val1 >= 10 && val1 <= 20) {
+					var y = val1 - 10;
+					var o = 10 * 0.1;
+					var u = y * 0.075;
+					var i = u + o;
+					r = i;
+				} else if(val1 >= 20 && val1 <= 40) {
+					var p = val1 - 20;
+					var a = p * 0.05;
+					var s = a + 1.75;
+					r = s;
+				} else if(val1 >= 40 && val1 <= 60) {
+					var d = val1 - 40;
+					var f = d * 0.03;
+					var g = f + 3.25; //??
+					r = g;
+				} else if(val1 >= 60 && val1 <= 100) {
+					var h = val1 - 60;
+					var j = h * 0.015;
+					var k = j + 4.75; //??
+					r = k;
+				} else if(val1 >= 100) {
+					var l = val1 - 100;
+					var z = l * 0.01;
+					var x = z + 7.75; //??
+					r = x;
 				}
-				document.getElementById("demo").innerHTML=r;
+				document.getElementById("demo").innerHTML = r;
+			}
+
+			function evalProfit(val1) {
+				var r;
+				if(val1 <= 10) {
+					var t = val1 * 0.1;
+					r = t;
+				} else if(val1 >= 10 && val1 <= 20) {
+					var y = val1 - 10;
+					var o = evalProfit(10);
+					var u = y * 0.075;
+					var i = u + o;
+					r = i;
+				} else if(val1 >= 20 && val1 <= 40) {
+					var p = val1 - 20;
+					var a = p * 0.05;
+					var s = a + evalProfit(20);
+					r = s;
+				} else if(val1 >= 40 && val1 <= 60) {
+					var d = val1 - 40;
+					var f = d * 0.03;
+					var g = f + evalProfit(40); //??
+					r = g;
+				} else if(val1 >= 60 && val1 <= 100) {
+					var h = val1 - 60;
+					var j = h * 0.015;
+					var k = j + evalProfit(60); //??
+					r = k;
+				} else if(val1 >= 100) {
+					var l = val1 - 100;
+					var z = l * 0.01;
+					var x = z + evalProfit(100); //??
+					r = x;
+				}
+				return r;
+			}
+
+			function evalProfit2(val1) {
+				var r=0;
+				//求10万元档的提成；
+				if(val1 <= 10) {
+					var t = val1 * 0.1;
+					r += t;
+				}else{
+					
+					r += 10 * 0.1;
+				}
+				//求10-20万元档的提成；
+				if(val1 >= 10) {
+					
+					if(val1 <= 20) {
+						var y = val1 - 10;
+						var u = y * 0.075;						
+						r += u;
+					} else {
+						r += (20-10) * 0.075;
+					}
+				}
+				//求20-40万元档的提成；
+				if(val1 >= 20 ){
+					if(val1 <= 40) {
+						var p = val1 - 20;
+						var a = p * 0.05;
+						r += a;
+					}else{
+						r += (40-20) * 0.05;
+					}
+				}
+				
+				if(val1 >= 40 ){
+					if(val1 <= 60) {
+						var d = val1 - 40;
+						var f = d * 0.03;
+						r += f;
+					}else{
+						r += (60-40) * 0.03;
+					}
+				}
+				if(val1 >= 60){
+					if(val1 <= 100) {
+						var h = val1 - 60;
+						var j = h * 0.015;
+						r += j;
+					}else{
+						r += (100-60) * 0.015;
+					}
+				}
+
+				if(val1 >= 100) {
+					var l = val1 - 100;
+					var z = l * 0.01;
+
+					r += z;
+				}
+				return r;
 			}
 		</script>
 	</head>
+
 	<body>
 		请输入利润额：<input type="text" id="c" />万元
-		<button onclick="czk('c')">点击这里</button>
+		<button onclick="czk('c')">点击这里1</button>
+		<button onclick="kzc('c')">点击这里2</button>
+		<button onclick="kzc2('c')">点击这里3</button>
 		<p id="demo"></p>
 	</body>
+
 </html>

@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>练习</title>
+		<meta charset="utf-8" />
+		<script>
+			function czk(a,b){
+				var input1=document.getElementById(a);
+				var input2=document.getElementById(b);
+				var val1=input1.value;
+				var val2=input2.value;
+				debugger;
+				var type=typeof(val1) ;
+				var r;
+				var i1=parseFloat(val1);
+				var i2=parseInt(val2);
+				if(i1<i2){
+					r=i1;
+				}else{
+					r=i2;
+				}
+				document.getElementById("demo").innerHTML=r;
+				document.getElementById("n").innerHTML=type;
+			}
+		</script>
+	</head>
+	<body>
+		1:<input type="text" id="c" /><br />
+		2:<input type="text" id="z" /><br />
+		<button onclick="czk('c','z')">点击这里</button>
+		<p id="demo"></p>
+		<p id="n"></p>
+	</body>
+</html>
