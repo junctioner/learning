@@ -21,12 +21,25 @@
 				document.getElementById("demo").innerHTML=r;
 				document.getElementById("n").innerHTML=type;
 			}
-		</script>
+			
+function mtShow(id) {
+    var el = (typeof id == "string") ? document.getElementById(id) : id;
+    if (el) el.style.display = 'block';
+}
+function mtHide(id) {
+    var el = (typeof id == "string") ? document.getElementById(id) : id;
+    if (el) el.style.display = 'none';
+}
+
+</script>
 	</head>
 	<body>
 		1:<input type="text" id="c" /><br />
 		2:<input type="text" id="z" /><br />
 		<button onclick="czk('c','z')">点击这里</button>
+		
+		<button onclick="mtShow('demo')">显示</button>
+		<button onclick="mtHide('demo')">隐藏</button>
 		<p id="demo"></p>
 		<p id="n"></p>
 	</body>

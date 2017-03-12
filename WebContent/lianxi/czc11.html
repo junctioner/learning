@@ -1,0 +1,99 @@
+<html>
+
+	<head>
+		<title>练习</title>
+		<meta charset="utf-8" />
+		<script>
+			function czk() {
+				var r = "";
+				for(var i = 15; i < 21; i++) {
+					r = r + i + "<br>";
+				}
+				document.getElementById("demo").innerHTML = r;
+			}
+
+			function czk1() {
+				var y = "";
+				for(var i = 15; i < 21; i++) {
+					if(i % 2 == 1) {
+						y = y + i + "<br>";
+					} else {
+
+					}
+				}
+				document.getElementById("demo").innerHTML = y;
+			}
+
+			function czk2() {
+				var y = "";
+				for(var i = 15; i < 21; i += 2) {
+					y = y + i + "<br>";
+				}
+				document.getElementById("demo").innerHTML = y;
+			}
+			function czk3(){
+				var k="";
+				for(var i=0;i<101;i+=3){
+					if(i!=0){
+						k=k+i+"<br>";
+					}
+					
+				}document.getElementById("demo").innerHTML=k;
+			}
+			function czk4(){
+				var l="";
+				for(var i=0;i<15;i++){
+					l=l+"*"+"<br>";
+				}document.getElementById("demo").innerHTML=l;
+			}
+			function czk5(){
+				var v="<hr>";
+				//line 1
+				for(var i=1;i<31;i++){
+					// line 2
+					//for(var o=i;o<31;o++){		
+					for(var o=1;o<31;o++){	
+						if(i>o){
+							v=v+"&nbsp;&nbsp;";	
+						}else{
+							v=v+"*";	
+						}											
+					}
+					//line 3
+					v=v+"<br>";
+				}
+				//line 4
+				document.getElementById("demo").innerHTML=v+"<HR>";
+			}	
+			function czk6(){
+				var width = 9
+				var v="<hr>";
+				//line 1
+				for(var i=1;i<width;i++){
+					// line 2
+					//for(var o=i;o<31;o++){		
+					for(var o=1;o<width;o++){	
+						v=v+" ("+i+","+o+") ";	
+					}
+					//line 3
+					v=v+"<br>";
+				}
+				//line 4
+				document.getElementById("demo").innerHTML=v+"<HR>";
+			}	
+		</script>
+	</head>
+
+	<body>
+		<button onclick="czk()">点击这里0</button>
+		<button onclick="czk1()">点击这里1</button>
+		<button onclick="czk2()">点击这里2</button>
+		<button onclick="czk3()">点击这里3</button>
+		<button onclick="czk4()">点击这里4</button>
+		<button onclick="czk5()">点击这里5</button>
+		<button onclick="czk6()">点击这里6</button>
+		<p id="demo"></p>
+
+	</body>
+
+</html>

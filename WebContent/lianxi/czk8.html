@@ -48,7 +48,7 @@
 				 * 否则  ，比较B和C;
 				 * 		如果B 大于C;则B是最大值 ，否则 C是最大值；
 				 */
-				var o=
+				var o;
 				if(a>b){
 				
 				}else if(a>c){
@@ -60,6 +60,25 @@
 			function max2(a,b,c){
 				var d = max(a,b);
 				return max(d,c);
+			}
+			
+			function max3(a,b,c){
+				//===============
+				var d;
+				if(a>b){
+					d = a;
+				}else {
+					d = b;
+				}
+				//================
+				var e;
+				if(d>c){
+					e = d;
+				}else{
+					e = c;
+				}
+				//================
+				return e;
 			}
 		</script>
 	</head>
