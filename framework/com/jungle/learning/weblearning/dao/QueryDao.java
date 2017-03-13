@@ -11,18 +11,23 @@ import com.jungle.learning.weblearning.dao.handle.QueryHandle;
 
 public abstract class QueryDao<T> extends CmdDao {
 
-	public T queryOne(QueryHandle<T> dao) throws SQLException {
+	public T queryOne(QueryHandle<T> handle) throws SQLException {
+
 		Connection connection = this.getConnection();
+
 		PreparedStatement statement = null;
+
 		T info = null;
 		try {
-			statement = connection.prepareStatement(dao.getSQL());
+			statement = connection.prepareStatement(handle.getSQL());
 
-			dao.setParams(statement);
+			handle.setParams(statement);
 
 			ResultSet result = statement.executeQuery();
+
 			if (result.next()) {
-				info = dao.wrapper(result);
+
+				info = handle.wrapper(result);
 			}
 		} catch (SQLException e) {
 			throw e;
@@ -37,18 +42,23 @@ public abstract class QueryDao<T> extends CmdDao {
 		return info;
 	}
 
-	public List<T> query(QueryHandle<T> dao) throws SQLException {
+	public List<T> query(QueryHandle<T> handle) throws SQLException {
+
 		Connection connection = this.getConnection();
+
 		PreparedStatement statement = null;
+
 		List<T> list = new ArrayList<T>();
 		try {
-			statement = connection.prepareStatement(dao.getSQL());
+			statement = connection.prepareStatement(handle.getSQL());
 
-			dao.setParams(statement);
+			handle.setParams(statement);
 
 			ResultSet result = statement.executeQuery();
+
 			if (result.next()) {
-				list.add(dao.wrapper(result));
+
+				list.add(handle.wrapper(result));
 			}
 		} catch (SQLException e) {
 			throw e;
