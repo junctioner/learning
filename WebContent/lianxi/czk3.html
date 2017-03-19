@@ -5,34 +5,59 @@
 		<meta charset="utf-8" />
 		<script>
 			function czk(z) {
+				//自定义一个函数，名字叫czk，接收名字为z的参数
 				var k = "";
+				//定义结果变量k，把空字符串赋值给k
 				if(z == "true") {
+					//如果比较z是否等于ture
+					
+					//var flag = (z == true)
+					//比较变量z 是否等于true;
+					// if(falg)
+					//如果比较结果 为真
+					
+					
+					//如果 变量z等于 true
 					k = "“原来你是男人呀，呵呵”";
+					//就把“原来你是男人呀，呵呵”赋值给结果变量k
 				} else if(z=="false") {
+					//否则如果比较z是否等于falae
 					k = "“你的性别难道是女?”";
+					//把“你的性别难道是女?”赋值给结果变量k
 				}
 				//return k;
 				document.getElementById("demo").innerHTML = k;
+				//把结果变量k赋值给，ID为"demo"的元素对象的innerHTML属性
 			}
 			function kzc(inId,outId){
 				//var e = document.getElementById("w").value
+				//自定义一个函数，名字为kzc,接收名字为inId和outId的参数
 				var e = getValue(inId);
+				//得到inId参数的值，赋值给e
 				var r="";
+				//定义结果变量，把空字符串赋值给r
 				if(e>=1000){
+					//如果比较e是否大于等于1000 **
 					r="“输入的数>=1000”";
+					//把“输入的数>=1000”赋值给结果变量r
 				}
 				else{
+					//否则
 					r="“输入的数<1000”";
+					//把“输入的数<1000”赋值给结果变量r
 				}
 				write(outId,r);
 				//document.getElementById("w").innerHTML=r;
+				//把outId和r的参数写入HTML **
 			}
 			/**
 			 * 获取指定输入框的值
 			 * @param {Object} strId
 			 */
 			function getValue(strId){
+				//自定义一个函数，名字为getValue,接收名字为strId的参数
 				return document.getElementById(strId).value;
+				//返回通过ID得到对应的元素对象的值
 			}
 			/**
 			 * 写数据到指定标签
@@ -40,21 +65,32 @@
 			 * @param {Object} value
 			 */
 			function write(strId,value){
+				//自定义一个函数，名字为write，接收名为strId和value的参数
 				document.getElementById(strId).innerHTML=value;
+				//把值赋给,ID为"strId"的元素对象的innweHTML的属性
 			}			
 			
 			function swap(aId,bId){
+				//自定义一个函数，名字为swap，接收名字为aId和bId的参数
 				var iA= getValue(aId);
+				//得到aID参数的值，赋值给iA
 				var iB = getValue(bId);
+				//得到bId参数的值，赋值给iB
 				document.getElementById(aId).value = iB;
+				//把结果变量IB赋值给，ID为"aId"的元素对象的innerHTML的属性
 				document.getElementById(bId).value = iA;
+				//把结果变量IA赋值给，ID为"bId"的元素对象的innerHTML的属性
 			}
 			function czk1(a,b){
+				//自定义一个函数，名字为czk1，接收名字为a和b的参数
 				var ea = getValue(a);
+				//得到a的参数的值，赋值给ea
 				var eb = getValue(b);
-				
+				//得到b的参数的值，赋值给eb
 				if(ea>=eb){
+					//如果比较ea大于等于eb
 					swap(a,b);
+					//swap函数交换a和b
 				}
 				
 			}

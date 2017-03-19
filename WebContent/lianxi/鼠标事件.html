@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>鼠标事件</title>
+		<script>
+			function c(){
+				//window.alert();
+				document.getElementById("demo").innerHTML+="鼠标触发按下事件<br>";
+			}
+			function z(){
+				//window.alert();
+				document.getElementById("demo").innerHTML+="鼠标抬起的事件<br>"; 
+			}
+		    function k(){
+		    	document.getElementById("demo").innerHTML+="移动到指定元素上面<br>";
+		   
+			}function czk(){
+				document.getElementById("demo").innerHTML+="移出外面<br>";
+			}
+		    function czk1(event){
+		    	document.getElementById("demo").innerHTML+="单击<br>";
+		    	event.target.focus();
+		    	
+		    }
+		    function czk2(){
+		    	document.getElementById("demo").innerHTML+="双击<br>";
+		    }
+		    function czk3(){
+		    	document.getElementById("demo").innerHTML+="键盘触发按下事件<br>";
+		    }
+		    function czk4(){
+		    	document.getElementById("demo").innerHTML+="键盘触发敲击事件<br>";
+		    }
+		    function czk5(){
+		    	document.getElementById("demo").innerHTML+="键盘触发释放事件<br>";
+		    }
+		</script>
+		<style>
+			div{
+				border:1px solid red;
+			}
+		</style>
+	</head>
+	<body >
+		<div onmousedown="c()" onmouseup="z()"
+			onmouseover="k()" onmouseout="czk()"
+			onclick="czk1(event)" ondblclick="czk2()">显示区</div>
+		<input type="text" onkeydown="czk3()" onkeypress="czk4()" onkeyup="czk5()"/>
+		<button onkeydown="czk3()" >vvvvv</button>
+		<p id="demo" onkeypress="czk4()"></p>
+		
+	</body>
+</html>
