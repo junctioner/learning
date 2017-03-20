@@ -22646,7 +22646,8 @@ function FormController(element, attrs, $scope, $animate, $interpolate) {
    * Commit all form controls pending updates to the `$modelValue`.
    *
    * Updates may be pending by a debounced event or because the input is waiting for a some future
-   * event defined in `ng-model-options`. This method is rarely needed as `NgModelController`
+   * event defined in `ng-model-options`. This method is rarely needed as `
+   * ontroller`
    * usually handles calling this in response to input events.
    */
   form.$commitViewValue = function() {
@@ -27756,7 +27757,7 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
     </file>
  * </example>
  *
- *
+ * ngModel控制器
  */
 var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$parse', '$animate', '$timeout', '$rootScope', '$q', '$interpolate',
     /** @this */ function($scope, $exceptionHandler, $attr, $element, $parse, $animate, $timeout, $rootScope, $q, $interpolate) {
