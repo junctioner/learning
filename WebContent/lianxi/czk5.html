@@ -4,33 +4,68 @@
 		<meta charset="utf-8" />
 		<script>
 			function czk(q,w,e){
+				//自定义一个函数，名字叫czk,接收名字为q和w和e的参数
 				var input1=document.getElementById(q);
+				//通过ID得到对应的元素对象，赋值给input1
 				var input2=document.getElementById(w);
+				//通过ID得到对应的元素对象，赋值给input2
 				var input3=document.getElementById(e);
+				//通过ID得到对应的元素对象，赋值给input3
 				var val1=input1.value;
+			    //把input1的值赋给val1
 				var val2=input2.value;
+				//把input2的值赋给val2
 				var val3=input3.value;
+				//把input3的值赋给val3
 				debugger;
+			//设置一个手工断点
 				var a;
+				//定义结果变量a
 				var r="";
+				//定义结果变量b，把空字符串赋值给r
 				var flag1 = val1== val2;
+				//比较val1是否等于val2
+				//赋给flag1
+				//if(val1 == val2)
 				var flag2 = val2== val3;
+				//比较val2是否等于val3
+				//赋给flag2
+				//if(val2 == val3)
 				var flag = (flag1&&flag2); 
+				//把flag1和flag2比较的值赋给flag
 				if(flag){
+					//如果flag的值是ture
 					r="等边三角形";
+					//把"等边三角形"字符串赋给r 		
 				}else if(val1==val2||val2==val3||val3==val1){
+					//否则如果var flag = (val1 == val2或者val2==val3或者val3==val1)
+					//比较变量val1 是否等于val2;比较变量val2 是否等于val3;比较变量val3 是否等于val1
+					// if(falg)
+					//如果比较结果 为等于
 					r="等腰三角形";
+					//把"等腰三角形"字符串赋给r 		
 				}else if(val1*val1+val2*val2==val3*val3||val2*val2+val3*val3==val1*val1||val3*val3+val1*val1==val2*val2){
+					//否则如果var flag = (val1*val1+val2*val2 == val3*val3或者val2*val2+val3*val3==val1*val1或者val3*val3+val1*val1==val2*val2)
+					//比较变量val1乘val1加val2乘val2 是否等于val3乘val3;比较变量val2乘val2加val3乘val3是否等于val1乘val1;比较变量val3乘val3加val1乘val1 是否等于val2乘val2
+					// if(falg)
+					//如果比较结果 为等于
 					r="直角三角形";
+					//把"直角三角形"字符串赋给r 		
 				}else{
+					//否则
 					r="其他三角形";
+					//把"其他三角形"字符串赋给r 		
 				}
 				var p = document.getElementById("demo");
+					//通过ID得到对应的元素对象，赋值给p
 				var p2 = document.getElementById("d2");
+					//通过ID得到对应的元素对象，赋值给p2
 				var result ='结果:<font color="red">'+r+"</font>";
+				//把输出的结果的文字颜色改成红色赋给result
 				p.innerHTML=result;
+				//把result的值赋值给，自定义p的元素对象的innerHTML属性
 				p2.innerText=result;
-				
+				//把result的值赋值给，自定义p2的元素对象的innerHTML属性
 			}
 		</script>
 	</head>
