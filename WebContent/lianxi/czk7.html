@@ -7,24 +7,46 @@
 			//controller
 			//service
 			function czk(z){
+				//自定义一个函数，名字叫czk,接收名字为z的参数
 				var r = abc(z);
+				//自定义一个函数，名字叫abc,接收名字为z的参数，赋给结果变量r
 				document.getElementById("demo").innerHTML=r;
+				//把结果变量r的值赋值给，ID为"demo"的元素对象的innerHTML属性
 			}
 			
 			function abc(z){
+				//自定义一个函数，名字叫abc,接收名字为z的参数
 				var r="";
+				//定义结果变量，把空字符串赋值给r
 				var t=z/10;
+				//把z除以10的值赋给t
 				var q=z.indexOf('7');
+				//z返回一个为7的整数，赋给q
 				var y=Math.floor(t);
+				//把t下舍入的值，赋给y
 				debugger;
+				//设置一个手工断点
 				if(z%7==0){
+					//var flag = (z%7 == 0)
+					//比较变量z%7 是否等于0;
+					// if(falg)
+					//如果比较结果 为0
 					r="过";
+					//把“过”字符串赋给k
 				}else if(q>=0){
+					//否则如果var flag = (q >= 0)
+					//比较变量q是否大于等于0;
+					// if(falg)
+					//如果比较结果 为大于等于0
 					r="过";
+					//把“过”字符串赋给r
 				}else{
+					//否则
 					r=z;
+					//把结果变量z赋给结果变量r
 				}
 				return r;
+				//返回结果变量r
 			}
 		</script>
 	</head>
