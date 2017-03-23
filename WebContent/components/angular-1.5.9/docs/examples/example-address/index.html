@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Example - example-NgModelController</title>
+		<link href="style.css" rel="stylesheet" type="text/css">
+
+		<script src="../../../angular.js"></script>
+		<script src="../../../angular-sanitize.js"></script>
+		<script src="script.js"></script>
+		<style>
+			div.mailer {
+				cursor: pointer;
+				border:2px solid black;
+				padding: 5px;
+				margin: 5px;
+			}
+			div.mailer-selected {
+				border:2px solid blue;
+				
+			}
+			
+		</style>
+	</head>
+
+	<body ng-app="customControl">
+		<div ng-controller="addressCtroller">
+			<form name="myForm">
+				<div contenteditable name="myWidget" ng-model="userContent" strip-br="true" required>Change me!</div>
+				<span ng-show="myForm.myWidget.$error.required">Required!</span>
+				<hr>
+				<textarea ng-model="userContent" aria-label="Dynamic textarea"></textarea>
+				<div data-delivery-address="vm.addressList" data-ng-model="vm.confirm.addressId" data-set-default-address="setDefault"></div>
+			</form>
+		</div>
+	</body>
+</html>
