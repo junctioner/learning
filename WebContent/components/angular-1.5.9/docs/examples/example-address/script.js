@@ -38,7 +38,7 @@
 				priority: 1100,
 				scope: {
 					deliveryAddress: '=',
-					setDefaultAddress: '&'
+					action: '&'
 				},
 				templateUrl: 'deliveryAddress.html',
 				link: function(scope, element, attrs, ngModel) {
