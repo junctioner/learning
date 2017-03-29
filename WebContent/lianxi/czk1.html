@@ -4,6 +4,7 @@
 		<meta charset="utf-8" />
 		<script>
 			function czk(z){
+<<<<<<< HEAD
 				var k ="";
 				if(z==0){
 					k="石头";
@@ -15,6 +16,39 @@
 					k="错误";
 				}
 				document.getElementById("demo").innerHTML=k;
+=======
+				//自定义一个函数，名字叫czk,接收名字为z的参数
+				var k ="";
+				//定义结果变量，把空字符串赋值给k
+				if(z==0){
+					//var flag = (z == 0)
+					//比较变量z 是否等于0;
+					// if(falg)
+					//如果比较结果 为0
+					k="石头";
+					//就把“石头”赋值给结果变量k
+				}else if(z==1){
+					//否则如果var flag = (z == 1)
+					//比较变量z 是否等于1;
+					// if(falg)
+					//如果比较结果 为1
+					k="剪刀";
+					//就把“剪刀”赋值给结果变量k
+				}else if(z==2){
+					//否则如果var flag = (z == 2)
+					//比较变量z 是否等于2;
+					// if(falg)
+					//如果比较结果 为2
+					k="布";
+					//就把“布”赋值给结果变量k
+				}else{
+					//否则
+					k="错误";
+					//就把“错误”赋值给结果变量k
+				}
+				document.getElementById("demo").innerHTML=k;
+				//把结果变量k赋值给，ID为"demo"的元素对象的innerHTML属性
+>>>>>>> 20dddea281016831a02734ea73dbdea772c7fd97
 			}
 		</script>
 	</head>

@@ -7,6 +7,7 @@
 		<script>
 			function czk(x, s, t) {
 				var input1 = document.getElementById(x);
+<<<<<<< HEAD
 				var input2 = document.getElementById(s);
 				var input3 = document.getElementById(t);
 				var val1 = input1.value;
@@ -46,6 +47,97 @@
 				};
 
 				document.getElementById("demo").innerHTML = b + g;
+=======
+				//通过ID得到对应的元素对象，赋值给input1
+				var input2 = document.getElementById(s);
+				//通过ID得到对应的元素对象，赋值给input2
+				var input3 = document.getElementById(t);
+				//通过ID得到对应的元素对象，赋值给input3
+				var val1 = input1.value;
+				//把input1的值赋给val1
+				var val2 = input2.value;
+				//把input2的值赋给val2
+				var val3 = input3.value;
+				//把input3的值赋给val3
+				debugger;
+				//设置一个手工断点
+				var b = "";
+				//定义结果变量，把空字符串赋值给b
+				var g = "未知体重";
+				//把"未知体重"字符串，赋给g
+				if(val1 == "男") {
+					//var flag = (val1 == "男")
+					//比较变量val1 是否等于"男";
+					// if(falg)
+					//如果比较结果 为"男"
+					b = "男";			
+					//把"男"赋值给结果变量b
+					var bztz = val2 - 100;
+					//把val2减去100的值赋给bztz
+					var zx = bztz - 3;
+					//把bzta减去3的值赋给zx
+					var zd = bztz + 3;
+					//把bzta加3的值赋给zd
+					if(val3 < zx) {
+					//var flag = (val3 < zx)
+					//比较变量val3 是否大于zx;
+					// if(falg)
+					//如果比较结果 为小于zx	
+						g = "偏瘦";
+					//把“偏瘦”字符串赋给g	
+					} else if(val3 > zd) {
+					//否则如果var flag = (val3 > zd)
+					//比较变量val3 是否大于zd;
+					// if(falg)
+					//如果比较结果 为小于zd
+						g = "偏胖";
+					//把“偏胖”字符串赋给g	
+					} else {
+						//否则
+						g = "标准";
+						//把“标准”字符串赋给g
+					}
+				} else if(val1 == "女") {
+					//否则如果var flag = (val1 == "女")
+				    //比较变量val1 是否等于"女";
+					// if(falg)
+					//如果比较结果 为等于"女"
+					b = "女";
+                    //把"女"字符串赋给b   
+					var bztz = val2 - 110;
+					//把val2减去110的值赋给bztz
+					var zx = bztz - 3;
+					//把bzta减去3的值赋给zx
+					var zd = bztz + 3;
+					//把bzta加3的值赋给zd
+					if(val3 > zd) {
+					//var flag = (val3 > zd)
+					//比较变量val3 是否大于zd;
+					// if(falg)
+					//如果比较结果 为小于zd	
+						g = "偏胖";
+					//把"偏胖"字符串赋给g  	
+					} else if(val3 < zx) {
+					//否则如果ar flag = (val3 < zx)
+					//比较变量val3 是否大于zx;
+					// if(falg)
+					//如果比较结果 为小于zx
+						g = "偏瘦";
+						//把"偏瘦"字符串赋给g  		
+					} else {
+						//否则
+						g = "标准";
+							//把"标准"字符串赋给g  	
+					}
+				} else {
+					//否则
+					b = "火星人";
+						//把"火星人"字符串赋给b  	
+				};
+
+				document.getElementById("demo").innerHTML = b + g;
+				//把结果变量b加g的值赋值给，ID为"demo"的元素对象的innerHTML属性
+>>>>>>> 20dddea281016831a02734ea73dbdea772c7fd97
 			}
 		</script>
 	</head>
