@@ -7,6 +7,26 @@
 			//controller
 			//service
 			function czk(z){
+<<<<<<< HEAD
+				var r = abc(z);
+				document.getElementById("demo").innerHTML=r;
+			}
+			
+			function abc(z){
+				var r="";
+				var t=z/10;
+				var q=z.indexOf('7');
+				var y=Math.floor(t);
+				debugger;
+				if(z%7==0){
+					r="过";
+				}else if(q>=0){
+					r="过";
+				}else{
+					r=z;
+				}
+				return r;
+=======
 				//自定义一个函数，名字叫czk,接收名字为z的参数
 				var r = abc(z);
 				//自定义一个函数，名字叫abc,接收名字为z的参数，赋给结果变量r
@@ -47,6 +67,7 @@
 				}
 				return r;
 				//返回结果变量r
+>>>>>>> 20dddea281016831a02734ea73dbdea772c7fd97
 			}
 		</script>
 	</head>

@@ -1,0 +1,19 @@
+<div class="mailers">
+	<div data-content-blank class="check-addr" data-ng-if="vm.addressList.isEmpty">
+		<h4 class="yahei">您还没有收货地址</h4>
+		<p>赶快添加一个吧！</p>
+	</div>
+	<div class="col-md-3 mailer" data-ng-repeat="address in deliveryAddress" id="{{address.addressId}}" >
+		<i data-ng-bind="address.addressId"></i>
+		<p class="contact">{{address.province + address.city}}({{address.contact}}收)</p>
+		<div class="addressDetail">
+			<span class="">其它&nbsp;&nbsp;&nbsp;{{address.county + aaddress.detailAddress}}&nbsp;&nbsp;&nbsp;{{address.mobileNo}}</span>
+		</div>
+		<div class="cell p-ops" style="float: right; text-align: right; padding-right: 16px;">
+			<a href="javascript:void(0);" data-ng-click="action()" class="label label-default" data-ng-if="!address.isDefault">设为默认地址</a>
+		</div>
+		<div class="modify">
+			<a>修改</a>
+		</div>
+	</div>
+</div>

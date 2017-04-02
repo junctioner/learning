@@ -7,6 +7,47 @@
 		<script>
 			function czk(x, s, t) {
 				var input1 = document.getElementById(x);
+<<<<<<< HEAD
+				var input2 = document.getElementById(s);
+				var input3 = document.getElementById(t);
+				var val1 = input1.value;
+				var val2 = input2.value;
+				var val3 = input3.value;
+				debugger;
+				var b = "";
+				var g = "未知体重";
+				if(val1 == "男") {
+					b = "男";					
+					var bztz = val2 - 100;
+					var zx = bztz - 3;
+					var zd = bztz + 3;
+					
+					if(val3 < zx) {
+						g = "偏瘦";
+					} else if(val3 > zd) {
+						g = "偏胖";
+					} else {
+						g = "标准";
+					}
+				} else if(val1 == "女") {
+					b = "女";
+
+					var bztz = val2 - 110;
+					var zx = bztz - 3;
+					var zd = bztz + 3;
+					if(val3 > zd) {
+						g = "偏胖";
+					} else if(val3 < zx) {
+						g = "偏瘦";
+					} else {
+						g = "标准";
+					}
+				} else {
+					b = "火星人";
+				};
+
+				document.getElementById("demo").innerHTML = b + g;
+=======
 				//通过ID得到对应的元素对象，赋值给input1
 				var input2 = document.getElementById(s);
 				//通过ID得到对应的元素对象，赋值给input2
@@ -96,6 +137,7 @@
 
 				document.getElementById("demo").innerHTML = b + g;
 				//把结果变量b加g的值赋值给，ID为"demo"的元素对象的innerHTML属性
+>>>>>>> 20dddea281016831a02734ea73dbdea772c7fd97
 			}
 		</script>
 	</head>
