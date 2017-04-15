@@ -1,0 +1,30 @@
+<html>
+
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<script>
+			var birth = new Date("1997-08-14");
+			var czk = {
+				name: "陈智康",
+				sex: "男",
+				age: "19",
+				birth:birth,
+				hello : function(name){
+					var name1 = "包1晗";
+					var message = "您好哇！";
+					//return name1 +'，' +message;
+					return name + ',您好哇！ffffccf';					//return "包晗"+"您好哇！"
+				}
+			};
+			czk.helloMessage = czk.hello(czk.name);
+			alert(czk.hello);
+			alert(czk.helloMessage);
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+
+</html>
