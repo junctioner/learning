@@ -1,0 +1,92 @@
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>登入</title>
+		<script type="text/javascript" src="../components/angular-1.5.9/docs/components/jquery-2.2.3/jquery.js"></script>
+		<style>
+			td.czk {
+				color: red;
+				font-size: 12px;
+			}
+			input{
+			
+				border: solid 1px black;
+			}
+			input.kzc{
+				
+				border: solid 1px red;
+			}
+		</style>
+		<script>
+			/*$(document).ready(function() {
+							var a = $("[type='reset']");
+							console.log(a);
+							a.click(function() {
+								alert("reset是取消 按钮");
+							});
+						});*/
+			//$("[name='username']").val();
+			//$("#c");
+
+			function czk() {
+				//var k = document.getElementById("c");
+
+				if($("[name='username']").val() == "") {
+					$("[name='username']").addClass("kzc");
+					$("td.username").text("用户名是必填项，不能为空！");
+
+					return false;
+
+				} else {
+					$("td.username").text("");
+					$("[name='username']").removeClass("kzc");
+					if($("[name='password']").val() == "") {
+
+						$("td.password").text("密码不能为空");
+
+						return false;
+
+					} else {
+						$("td.password").text("");
+
+						return true;
+
+					}
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<form method="get" action="#" onsubmit="return czk();">
+			<table>
+				<tr>
+					<td>
+						用户名：</td>
+					<td><input type="text" name="username" /></td>
+					<td class="username czk"></td>
+				</tr>
+				<tr>
+					<td>
+						密码 ：</td>
+					<td><input type="password" name="password" /></td>
+					<td class="password czk"></td>
+				</tr>
+				<tr>
+					<td>年龄：</td>
+					<td> <input type="text" name="age" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button type="submit">登陆</button>
+						<button type="reset">取消</button>
+					</td>
+				</tr>
+				<!--<button type="submit">登陆</button>-->
+			</table>
+		</form>
+	</body>
+
+</html>
