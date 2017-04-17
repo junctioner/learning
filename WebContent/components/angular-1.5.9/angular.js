@@ -4,7 +4,7 @@
  * License: MIT
  */
 (function(window) {'use strict';
-
+debugger;
 /**
  * @description
  *
@@ -35,8 +35,8 @@
  * @returns {function(code:string, template:string, ...templateArgs): Error} minErr instance
  */
 
-function minErr(module, ErrorConstructor) {
-  ErrorConstructor = ErrorConstructor || Error;
+function minErr(module, ErrorConstructor) {//定义错误异常
+  ErrorConstructor = ErrorConstructor || Error;//
   return function() {
     var SKIP_INDEXES = 2;
 
@@ -250,7 +250,7 @@ msie = window.document.documentMode;
  * @return {boolean} Returns true if `obj` is an array or array-like object (NodeList, Arguments,
  *                   String ...)
  */
-function isArrayLike(obj) {
+function isArrayLike(obj) {//私有方法:判断是否为类似数组对象
 
   // `null`, `undefined` and `window` are not array-like
   if (obj == null || isWindow(obj)) return false;
@@ -307,7 +307,7 @@ function isArrayLike(obj) {
  * @returns {Object|Array} Reference to `obj`.
  */
 
-function forEach(obj, iterator, context) {
+function forEach(obj, iterator, context) {//遍历对象所有属性
   var key, length;
   if (obj) {
     if (isFunction(obj)) {
@@ -351,7 +351,7 @@ function forEach(obj, iterator, context) {
   return obj;
 }
 
-function forEachSorted(obj, iterator, context) {
+function forEachSorted(obj, iterator, context) {//按默认排序方式遍历对象所有属性
   var keys = Object.keys(obj).sort();
   for (var i = 0; i < keys.length; i++) {
     iterator.call(context, obj[keys[i]], keys[i]);
@@ -397,7 +397,7 @@ function setHashKey(obj, h) {
   }
 }
 
-
+//基础扩展函数
 function baseExtend(dst, objs, deep) {
   var h = dst.$$hashKey;
 
@@ -544,7 +544,7 @@ noop.$inject = [];
 function identity($) {return $;}
 identity.$inject = [];
 
-
+//数值方法化返回
 function valueFn(value) {return function valueRef() {return value;};}
 
 function hasCustomToString(obj) {
@@ -1706,6 +1706,7 @@ function angularInit(element, bootstrap) {
       return;
     }
     config.strictDi = getNgAttribute(appElement, 'strict-di') !== null;
+    //启动angular应用
     bootstrap(appElement, module ? [module] : [], config);
   }
 }
@@ -1775,9 +1776,10 @@ function bootstrap(element, modules, config) {
     strictDi: false
   };
   config = extend(defaultConfig, config);
+  //8.引导程序
   var doBootstrap = function() {
     element = jqLite(element);
-
+	//判断元素是否已有注入器
     if (element.injector()) {
       var tag = (element[0] === window.document) ? 'document' : startingTag(element);
       // Encode angle brackets to prevent input from being sanitized to empty string #8683.
@@ -1786,25 +1788,29 @@ function bootstrap(element, modules, config) {
           'App already bootstrapped with this element \'{0}\'',
           tag.replace(/</,'&lt;').replace(/>/,'&gt;'));
     }
-
+//8.1 设置顶级元素
     modules = modules || [];
     modules.unshift(['$provide', function($provide) {
       $provide.value('$rootElement', element);
     }]);
-
+//8.2 激活调试
     if (config.debugInfoEnabled) {
       // Pushing so that this overrides `debugInfoEnabled` setting defined in user's `modules`.
       modules.push(['$compileProvider', function($compileProvider) {
         $compileProvider.debugInfoEnabled(true);
       }]);
     }
-
+//8.3 压入ng模块
     modules.unshift('ng');
+//8.4 创建注入器
     var injector = createInjector(modules, config.strictDi);
     injector.invoke(['$rootScope', '$rootElement', '$compile', '$injector',
        function bootstrapApply(scope, element, compile, injector) {
+//xx.处理DOM       	
         scope.$apply(function() {
+          //把注入器写到元素的数据区
           element.data('$injector', injector);
+          //编译元素，并应用到域中
           compile(element)(scope);
         });
       }]
@@ -1814,7 +1820,7 @@ function bootstrap(element, modules, config) {
 
   var NG_ENABLE_DEBUG_INFO = /^NG_ENABLE_DEBUG_INFO!/;
   var NG_DEFER_BOOTSTRAP = /^NG_DEFER_BOOTSTRAP!/;
-
+	debugger;
   if (window && NG_ENABLE_DEBUG_INFO.test(window.name)) {
     config.debugInfoEnabled = true;
     window.name = window.name.replace(NG_ENABLE_DEBUG_INFO, '');
@@ -2424,7 +2430,7 @@ function shallowCopy(src, dst) {
 
 /* global toDebugString: true */
 
-function serializeObject(obj) {
+function serializeObject(obj) {//序列化对象为json格式字符串
   var seen = [];
 
   return JSON.stringify(obj, function(key, val) {
@@ -2439,7 +2445,7 @@ function serializeObject(obj) {
   });
 }
 
-function toDebugString(obj) {
+function toDebugString(obj) {//格式化调试输出信息
   if (typeof obj === 'function') {
     return obj.toString().replace(/ \{[\s\S]*$/, '');
   } else if (isUndefined(obj)) {
@@ -4529,7 +4535,7 @@ function annotate(fn, strictDi, name) {
  * ```
  */
 
-
+//创建注入器
 function createInjector(modulesToLoad, strictDi) {
   strictDi = (strictDi === true);
   var INSTANTIATING = {},
@@ -4561,17 +4567,19 @@ function createInjector(modulesToLoad, strictDi) {
                 provider.$get, provider, undefined, serviceName);
           }),
       instanceInjector = protoInstanceInjector;
-
+//缓存注入器
   providerCache['$injector' + providerSuffix] = { $get: valueFn(protoInstanceInjector) };
+//加载模块  
   var runBlocks = loadModules(modulesToLoad);
   instanceInjector = protoInstanceInjector.get('$injector');
   instanceInjector.strictDi = strictDi;
+  //对加载的模块，进行依赖注入
   forEach(runBlocks, function(fn) { if (fn) instanceInjector.invoke(fn); });
 
   return instanceInjector;
 
   ////////////////////////////////////
-  // $provider
+  // $provider （代理）提供者
   ////////////////////////////////////
 
   function supportObject(delegate) {
@@ -4688,7 +4696,7 @@ function createInjector(modulesToLoad, strictDi) {
   }
 
   ////////////////////////////////////
-  // internal Injector
+  // internal Injector 内部注入器{缓存中存在，直接返回；否则，调用工厂方法获取服务}
   ////////////////////////////////////
 
   function createInternalInjector(cache, factory) {
@@ -8707,7 +8715,8 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       // return a linking function if we have found anything, null otherwise
       return linkFnFound ? compositeLinkFn : null;
 
-      function compositeLinkFn(scope, nodeList, $rootElement, parentBoundTranscludeFn) {
+
+function compositeLinkFn(scope, nodeList, $rootElement, parentBoundTranscludeFn) {
         var nodeLinkFn, childLinkFn, node, childScope, i, ii, idx, childBoundTranscludeFn;
         var stableNodeList;
 
@@ -9350,7 +9359,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           postLinkFns.push(post);
         }
       }
-
+//节点连接函数
       function nodeLinkFn(childLinkFn, scope, linkNode, $rootElement, boundTranscludeFn) {
         var i, ii, linkFn, isolateScope, controllerScope, elementControllers, transcludeFn, $element,
             attrs, scopeBindingInfo;
@@ -9412,7 +9421,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           } else {
             controller.bindingInfo = {};
           }
-
+			//执行ctrl
           var controllerResult = controller();
           if (controllerResult !== controller.instance) {
             // If the controller constructor has a return value, overwrite the instance
@@ -9463,7 +9472,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           }
         });
 
-        // PRELINKING
+        // PRELINKING 预连接
         for (i = 0, ii = preLinkFns.length; i < ii; i++) {
           linkFn = preLinkFns[i];
           invokeLinkFn(linkFn,
@@ -9486,7 +9495,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           childLinkFn(scopeToChild, linkNode.childNodes, undefined, boundTranscludeFn);
         }
 
-        // POSTLINKING
+        // POSTLINKING 连接
         for (i = postLinkFns.length - 1; i >= 0; i--) {
           linkFn = postLinkFns[i];
           invokeLinkFn(linkFn,
@@ -9588,7 +9597,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
       return value || null;
     }
-
+//安装ctrl
     function setupControllers($element, attrs, transcludeFn, controllerDirectives, isolateScope, scope, newIsolateScopeDirective) {
       var elementControllers = createMap();
       for (var controllerKey in controllerDirectives) {
@@ -10515,6 +10524,7 @@ function $ControllerProvider() {
         }
 
         return extend(function $controllerInit() {
+        	//注入ctrl,初始化
           var result = $injector.invoke(expression, instance, locals, constructor);
           if (result !== instance && (isObject(result) || isFunction(result))) {
             instance = result;
@@ -32226,13 +32236,14 @@ if (window.angular.bootstrap) {
   }
   return;
 }
-
+//2.初始化各变量（函数）
 //try to bind to jquery now so that one can write jqLite(document).ready()
 //but we will rebind on bootstrap again.
+//3.绑定jQuery
 bindJQuery();
-
+//4.发布angular基本API
 publishExternalAPI(angular);
-
+//5.定义ngLocale模块
 angular.module("ngLocale", [], ["$provide", function($provide) {
 var PLURAL_CATEGORY = {ZERO: "zero", ONE: "one", TWO: "two", FEW: "few", MANY: "many", OTHER: "other"};
 function getDecimals(n) {
@@ -32375,11 +32386,12 @@ $provide.value("$locale", {
   "pluralCat": function(n, opt_precision) {  var i = n | 0;  var vf = getVF(n, opt_precision);  if (i == 1 && vf.v == 0) {    return PLURAL_CATEGORY.ONE;  }  return PLURAL_CATEGORY.OTHER;}
 });
 }]);
-
+//6.页面加载完成，初始化angular
   jqLite(window.document).ready(function() {
+  	//7.angular 初始化
     angularInit(window.document, bootstrap);
   });
 
-})(window);
+})(window);//1.运行匿名函数
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
