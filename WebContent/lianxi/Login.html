@@ -42,14 +42,14 @@
 					$("td.username").text("");
 					$("[name='username']").removeClass("kzc");
 					if($("[name='password']").val() == "") {
-
+                       $("[name='password']").addClass("kzc");
 						$("td.password").text("密码不能为空");
 
 						return false;
 
 					} else {
 						$("td.password").text("");
-
+                        $("[name='password']").removeClass("kzc");
 						return true;
 
 					}
