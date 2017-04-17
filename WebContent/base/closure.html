@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>闭包</title>
+	</head>
+
+	<body>
+		<script>
+			function buildList(list) {
+				var result = [];
+				for(var i = 0; i < list.length-1; i++) {
+					var item = 'item' + list[i];
+					result.push(function() { alert(item + ' ' + list[i]) });
+				}
+				return result;
+			}
+
+			function testList() {
+				var fnlist = buildList([1, 2, 3,4]);
+				// using j only to help prevent confusion - could use i
+				for(var j = 0; j < fnlist.length; j++) {             
+					fnlist[j]();
+				}
+			}
+			testList();
+		</script>
+	</body>
+
+</html>
