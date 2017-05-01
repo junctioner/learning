@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>练习</title>
+		<meta charset="utf-8" />
+		<script>
+			function czk(){
+				
+				setTimeout(czk2, 1000)
+			}
+			function czk1(){
+				setTimeout("alert('5 秒')", 5000);
+			}
+			function czk2(){
+				alert('5miao');
+			}
+			</script>
+	</head>
+	<body>
+		<button onclick="czk()">czk</button>
+		<button onclick="czk1()">czk1</button>
+	</body>
+</html>
