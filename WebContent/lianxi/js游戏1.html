@@ -53,7 +53,7 @@
         #button {
             width: 133px;
             height: 133px;
-            background-image: url('images/play.png');
+            background-image: url('../img/play.png');
             position: absolute;
             z-index: 1000;
             margin-left: -66px;
@@ -407,7 +407,7 @@ function makeGame(url) {
                 vvgBox.removeChild(textTip);
                 var step = getId('step');
                 step.innerHTML = vvg.step;
-                makeGame('images/0' + vvg.step + '.jpg');
+                makeGame('img/0' + vvg.step + '.jpg');
             }
         } else {
             playBtn.onclick = function () {
@@ -419,14 +419,14 @@ function makeGame(url) {
                 var tip = getId('textTip');
                 tip.innerHTML = '';
                 var desTip = getId('desTip');
-                desTip.innerHTML = '现在你可以自定义图片了，请在下面的文本框中输入图片的地址：';
+                desTip.innerHTML = '..\img\夏目.jpg';
                 var imgDiy = getId('imgDiy');
                 var startDiy = getId('startDiy');
                 var imgUrl = getId('imgUrl');
                 imgDiy.style.display = 'block';
                 startDiy.onclick = function () {
                     if (imgUrl.value == '') {
-                        alert('D:\gitRepo\learning\WebContent\img\夏目.jpg');
+                        alert('..\img\夏目.jpg');
                     } else {
                         makeGame(imgUrl.value);
                     }
@@ -445,7 +445,7 @@ function makeGame(url) {
 }
 
 // 默认播放第一关
-makeGame('D:\gitRepo\learning\WebContent\img\夏目.jpg');
+makeGame('..\img\夏目.jpg');
 
 
 </script>

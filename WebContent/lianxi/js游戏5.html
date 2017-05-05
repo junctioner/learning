@@ -1,0 +1,183 @@
+<HTML>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="Copyright" content="分享JavaScript" />
+<meta name="description" content="分享JavaScript" />
+<meta content="分享JavaScript,js,贪吃蛇" name="keywords" />
+<title>贪吃蛇 - 分享JavaScript - http://www.sharejs.com</title>
+</head>
+<STYLE>
+  .Food { background-color: green;}
+  .Snake {background-color: red;}
+  .grid {border:1px solid #000}
+</STYLE>
+
+<SCRIPT langyage="javascript">
+var Rows=10
+var Cells=15
+var Num=20  //正方形格子的边长
+var BorderWidth=5
+var SpeedUp=5000
+
+//创建地图
+function CreateMap()  {
+	BW = eval(Cells*Num + 2*BorderWidth)  //宽度
+	BH = eval(Rows*Num + 2*BorderWidth)   //高度
+	document.body.innerHTML+='<div id=MainMap style=position:absolute;left:'+(document.body.clientWidth-BW)/2+';top:'+(document.body.clientHeight-BH)/2+';width:'+BW+';height:'+BH+';border-width:'+BorderWidth+';border-style:outset;border-color:#0000ff></div>'
+	Map = new Array() //创建全局数组Map[]
+	for(y=0; y<Rows; y++) {
+		Map[y]=new Array() //创建全局二维数组Map[][],初始值为'0'
+		for(x=0; x<Cells; x++)
+			Map[y][x] = '0'  //'0'值表示“空地”
+	}
+
+	//ShowGrid();  //显示地图内格子
+	Sx = parseInt(Math.random()*Cells) //创建全局变量Sx,赋予随机数
+	Sy = parseInt(Math.random()*Rows)  //创建全局变量Sy,赋予随机数
+	CreateSnake()	//生成蛇 - div
+	CreatFood()	//生成食物 - span
+	AllDiv = MainMap.all.tags('DIV')   //创建全局数组AllDiv,只有一个元素AllDiv[0]。MainMap是div的ID
+	AllSpan = MainMap.all.tags('SPAN') //创建全局数组AllSpan,只有一个元素AllSpan[0]
+}
+
+
+//显示地图内格子
+function ShowGrid() {
+	for(r=0; r<Rows; r++)  //行
+	{
+		t = r*Num;
+		for(c=0; c<Cells; c++)  //列
+		{
+			l = c*Num;
+			MainMap.innerHTML += '<table style="position:absolute;left:'+ l +';top:'+ t +';width:'+Num+';height:'+Num+';" cellpadding=0 cellspacing=0><tr><td align=center valign=middle class=grid>O</td></tr><table>'
+		}
+	}
+}
+
+
+//创建蛇的初始位置,赋予初始值'S'
+function CreateSnake() {
+	//<div>表示蛇身，通过调用本函数，可以累加到若干个，蛇身变长
+	//注意 y 和 x 是“蛇”<div> 的自定义属性。一直保存着蛇尾(!)的当前位置
+	//初始时，蛇头、蛇尾是同一个位置
+	MainMap.innerHTML += '<div x='+Sx+' y='+Sy+' 	style="position:absolute;left:'+Sx*Num+';top:'+Sy*Num+';width:'+Num+';height:'+Num+';overflow:hidden" class=Snake></div>'
+	Map[Sy][Sx]='S'  //Snake首字母
+}
+
+//创建食物的位置,赋予初始值'F'
+//食物的初始位置不能与蛇的初始位置相同，只能在空地放置食物。
+//若随机产生的2位置相同，则递归执行，直到不相同为止
+function CreatFood() {
+	Fx = parseInt(Math.random()*Cells)
+	Fy = parseInt(Math.random()*Rows)
+	if(Map[Fy][Fx]=='0')  //如果是空地
+	{
+		MainMap.innerHTML += '<span style=position:absolute;left:'+Fx*Num+';top:'+Fy*Num+';width:'+Num+';height:'+Num+';overflow:hidden class=Food></span>'
+		Map[Fy][Fx]='F'  //Food首字母
+	} else {
+		CreatFood(); //递归
+	}
+}
+
+
+//主移动--判断蛇头前面的是什么
+function Move() {
+	Sx += GoX  //自动行走，Map[Sy][Sx]为当前位置
+	Sy += GoY
+	if(Sy<0||Sy>=Rows) {
+		//碰墙，重新开始
+  		Move1()
+	} else {
+		SnakeFront = Map[Sy][Sx]
+		if(SnakeFront=='0') { //蛇前是空地
+			Move2()
+		} else {
+			if(SnakeFront=='F') //蛇前面是食物
+				Move3()
+  			else
+   				Move1()
+		}
+	}
+}
+
+
+//重新开始
+function Move1() {
+	if(confirm("Game Over，重新开始？"))
+		window.location.reload()
+}
+
+var Times=200
+
+//蛇行走到的当前位置是空地时
+function Move2() {
+	Map[AllDiv[0].y][AllDiv[0].x]='0'  //蛇走开后，把原位置设置为'0'，表示是空地
+	AllDiv[0].removeNode(true)  //把蛇数组当前元素删除，在下面的 CreateSnake()语句重新生成
+	CreateSnake()  //在新的位置生成蛇的<div>
+	setTimeout('Move()',Times)  //再次移动
+}
+
+
+//蛇行走到的当前位置是食物时
+function Move3() {
+	CreateSnake();  //蛇数组当前元素不删除，<div>累加一次，蛇长长一节
+	AllSpan[0].removeNode(true);  //把食物数组当前元素删除，在下面的 CreatFood()语句重新生成
+	CreatFood();  //再次随机生成食物
+	setTimeout('Move()',Times);  //再次移动
+}
+
+//蛇越行越快
+function oTimes() {
+	Times -= 5
+	if(Times>5)
+		setTimeout('oTimes()', SpeedUp)
+}
+
+document.onkeydown=KeyDown
+
+//方向
+function KeyDown() {
+Key=event.keyCode
+	switch(Key) {
+		case 37:
+  			Dir(-1,0);break;	//左方向键
+		case 39:
+			Dir(1,0);break;		//右方向键
+		case 38:
+			Dir(0,-1);break;	//上方向键
+		case 40:
+			Dir(0,1);break;		//下方向键
+	}
+	return false
+}
+
+var Star=0
+
+function Dir(x,y) {
+	GoX=x
+	GoY=y
+	if(Star==0) {
+		oTimes()
+		Star=1
+		Move()
+	}
+}
+
+
+//页面打开时运行
+attachEvent('onload', function() {
+	CreateMap();
+});
+</SCRIPT>
+
+<BODY>
+<div id="help">
+ 红色方块表示蛇，绿色方块表示食物。按方向键开始。<br>
+</div>
+<div align="center">
+<script language="javascript" src="http://www.sharejs.com/js/720.js"></script>
+<br><br>
+获取更多JavaScript代码，请登录JavaScript分享网 <a href="http://www.sharejs.com">http://www.sharejs.com</a>
+</div>
+</BODY>
+</HTML>

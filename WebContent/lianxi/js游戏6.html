@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="JS代码,图片缩放,脚本分享网,图片切换,css3,jQuery" />
+<meta name="description" content="纯CSS3实现的图片放大缩小效果，更多图片缩放,图片切换,sharejs.com,css3,jQuery请访问脚本分享网JS代码频道。" />
+<title>纯CSS3实现的图片放大缩小效果_脚本分享网</title>
+
+<!----------------------------------------->
+<!-- STYLE-CONFIGURATION STARTS HERE -->
+<!----------------------------------------->
+<!-- Set the text-style within .textboxstyle -->
+<!-- Set the backgroundcolor, the rounded corners and the shadow within .textboxbackgroundstyle -->
+<!-- Set the rounded corners and the shadow within .curveandshadowstyle -->
+<style>	
+.textboxstyle {
+font-family:Arial;
+font-size:16pt;
+color:black;
+text-align:center;
+vertical-align:top;
+}
+
+.textboxbackgroundstyle {
+background-color:white;
+padding:5px;
+
+/* rounded corners for Firefox http://www.sharejs.com*/
+-moz-border-radius-topleft: 15px;
+-moz-border-radius-bottomright: 15px;
+
+/* rounded corners for for Safari and Chrome */
+-webkit-border-top-left-radius: 15px;
+-webkit-border-bottom-right-radius: 15px;
+
+/* rounded corners for Opera */
+border-top-left-radius: 15px;
+border-bottom-right-radius: 15px;
+}
+
+.curveandshadowstyle {
+
+/* shadow and rounded corners for Firefox */
+-moz-box-shadow: 5px 5px 8px #818181;
+-moz-border-radius-topleft: 25px;
+-moz-border-radius-bottomright: 25px;
+
+/* shadow and rounded corners for Safari and Chrome */
+-webkit-box-shadow: 5px 5px 8px #818181;
+-webkit-border-top-left-radius: 25px;
+-webkit-border-bottom-right-radius: 25px;
+
+/* shadow and rounded corners for Opera */
+box-shadow: 5px 5px 5px #818181;
+border-top-left-radius: 25px;
+border-bottom-right-radius: 25px;
+
+/* shadow for Internet Explorer */
+filter: progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=135, Color='#818181');
+
+border-style:solid;
+border-width:1px;
+border-color:white;
+}
+</style>
+
+<!----------------------------------------->
+<!-- STYLE-CONFIGURATION STOPS HERE -->
+<!----------------------------------------->
+	
+<script>
+
+var imgurl= new Array()
+var message= new Array()
+var thislink= new Array()
+
+/////////////////////////////////////////////////
+// SCRIPT-CONFIGURATION STARTS HERE
+/////////////////////////////////////////////////
+
+// set the url (or path)  of your images. Add as many images as you like
+imgurl[0]="300x180bluefish.jpg"
+imgurl[1]="300x180bonbons.jpg"
+
+// set the messages corresponding to the images above (no more no less than the images above)
+message[0]="Let's go fishing today"
+message[1]="You are even sweeter"
+
+// set the links corresponding to the images above (no more no less than the images above)
+// If you dont want to add a link enter a #"instead of http://www.mylink.com, see smaple below
+thislink[0]="#"
+thislink[1]="#"
+
+// width of pictures (pixel)
+var imgwidth=300
+
+// width of pictures (pixel)
+var imgheight=180
+
+// set stillstand of picture (seconds)
+var stillstand=2.5
+
+// set opacity-strength (transparency-effect). Values may range from 1 to 100
+var opacitystrength=60
+
+/////////////////////////////////////////////////
+// SCRIPT-CONFIGURATION STOPS HERE
+/////////////////////////////////////////////////
+
+
+// Do not edit below this line , code from www.sharejs.com
+var tmr
+var step=10
+var i=imgwidth
+var i_imgurl=0
+stillstand*=1000
+
+var preloadedimages=new Array()
+for (iii=0;iii<imgurl.length;iii++){
+	preloadedimages[iii]=new Image()
+	preloadedimages[iii].src=imgurl[iii]
+}
+
+function shrinkpic() {
+	document.getElementById("textbox").innerHTML=""
+	if (i>0) {
+		i-=step
+		document.getElementById("picdiv").style.width=i+"px"
+		document.getElementById("picdiv").style.height=i*(imgheight/imgwidth)+"px"
+		document.getElementById("picdiv").style.left=imgwidth/2-(i/2)+"px"
+		document.getElementById("picdiv").style.top=(imgwidth/2-(i/2))*(imgheight/imgwidth)+"px"
+		tmr=setTimeout("shrinkpic()",20)
+	}
+	else {
+		i_imgurl++
+		if (i_imgurl>=imgurl.length) {
+			i_imgurl=0
+		}
+		document.getElementById("picdiv").style.background="url("+imgurl[i_imgurl]+")"
+		i=1
+		tmr=setTimeout("enlargepic()",20)
+	}
+}
+
+function enlargepic() {
+	if (i<=imgwidth) {
+		i+=step
+		document.getElementById("picdiv").style.width=i+"px"
+		document.getElementById("picdiv").style.height=i*(imgheight/imgwidth)+"px"
+		document.getElementById("picdiv").style.left=imgwidth/2-(i/2)+"px"
+		document.getElementById("picdiv").style.top=(imgwidth/2-(i/2))*(imgheight/imgwidth)+"px"
+		tmr=setTimeout("enlargepic()",20)
+	}
+	else {
+		i=imgwidth
+		showmessage()
+	}
+}
+
+function showmessage() {
+	document.getElementById("textbox").innerHTML='<span class="textboxbackgroundstyle">'+message[i_imgurl]+'</span>'
+	tmr=setTimeout("shrinkpic()",stillstand)
+}
+
+function gotothislink(){
+	document.location.href=thislink[i_imgurl]
+
+}
+
+document.write('<div id="roof" style="position:relative;width:'+imgwidth+'px;height:'+imgheight+'px;">')
+document.write('<div id="picdiv" class="curveandshadowstyle" style="position:absolute;background:url('+imgurl[0]+');width:'+imgwidth+'px;height:'+imgheight+'px;top:0px;left:0px;"></div>')
+
+document.write('<div id="tt" onClick="gotothislink()" style="position:absolute;width:'+imgwidth+'px;height:'+imgheight+'px;top:0px;left:0px;filter:alpha(opacity='+opacitystrength+');opacity:'+(opacitystrength/100)+';cursor:pointer;"><table width='+imgwidth+' height='+imgheight+'><tr><td id="textbox" class="textboxstyle"><span class="textboxbackgroundstyle">'+message[0]+'</span></td></tr></table></div>')
+
+document.write('</div>')
+
+window.onload=shrinkpic
+</script>
+
+
+<div style="text-align:center;clear:both">
+<p><script language="javascript" src="http://www.sharejs.com/js/720.js"></script></p>
+<p>来源：<a href="http://www.fabulant.com/downloadcenter/imgzoomcss3/imgzoomcss3.html" target="_blank">fabulant</a>　代码整理：<a href="http://www.sharejs.com/" target="_blank">脚本分享网</a>　感谢：<a href="http://www.sharejs.com" target="_blank">heiyou</a></p>
+<p>转载请注明出处，此代码仅供学习交流，请勿用于商业用途。</p>
+</div>
+</body>
+</html>
