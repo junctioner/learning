@@ -20,11 +20,13 @@ openFour   =8888888;
 twoThrees  =7777777;
 
 if (document.images) {
- uImg=new Image(); uImg.src='s'+userSq+'.gif';
- mImg=new Image(); mImg.src='s'+machSq+'.gif';
- uIm1=new Image(); uIm1.src='sb1.gif';
- mIm1=new Image(); mIm1.src='sb-1.gif';
- bImg=new Image(); bImg.src='s0.gif';
+ uImg=new Image(); uImg.src='../img/s'+userSq+'.gif'
+ 
+ mImg=new Image(); mImg.src="../img/"+'s'+machSq+'.gif';
+ 
+ uIm1=new Image(); uIm1.src='../img/sb1.gif';
+ mIm1=new Image(); mIm1.src='../img/sb-1.gif';
+ bImg=new Image(); bImg.src='../img/s0.gif';
 }
 
 f=new Array();
@@ -303,7 +305,7 @@ function evaluatePos(a,mySq) {
 
 function drawSquare(par1,par2,par3) {
  if (document.images) {
-  eval('self.f1.document.s'+par1+'_'+par2+'.src="s'+par3+'.gif"');
+  eval('self.f1.document.s'+par1+'_'+par2+'.src="../img/s'+par3+'.gif"');
  }
  else setTimeout("writeBoard()",50);
 }
