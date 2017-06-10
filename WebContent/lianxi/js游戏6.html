@@ -129,6 +129,7 @@ function shrinkpic() {
 		document.getElementById("picdiv").style.left=imgwidth/2-(i/2)+"px"
 		document.getElementById("picdiv").style.top=(imgwidth/2-(i/2))*(imgheight/imgwidth)+"px"
 		tmr=setTimeout("shrinkpic()",20)
+		//setTimeout(shrinkpic,20)
 	}
 	else {
 		i_imgurl++
